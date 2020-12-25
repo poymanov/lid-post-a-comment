@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Livewire\Pages\Home;
+use App\Http\Livewire\Pages\Login;
+use App\Http\Livewire\Pages\Registration;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,6 +16,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', Home::class)->name('home');
+Route::get('/login', Login::class)->name('login');
+Route::get('/registration', Registration::class)->name('registration');
