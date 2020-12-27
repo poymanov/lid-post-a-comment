@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Livewire\Pages;
+namespace App\Http\Livewire\Auth;
 
 use Illuminate\Auth\Events\Lockout;
 use Illuminate\Support\Facades\Auth;
@@ -30,7 +30,7 @@ class Login extends Component
 
         $this->ensureIsNotRateLimited();
 
-        if (! Auth::attempt(['email' => $this->email, 'password' => $this->password], true)) {
+        if (! Auth::attempt(['email' => $this->email, 'password' => $this->password], false)) {
             RateLimiter::hit($this->throttleKey());
 
             throw ValidationException::withMessages([
@@ -80,6 +80,6 @@ class Login extends Component
 
     public function render()
     {
-        return view('livewire.pages.login');
+        return view('livewire.auth.login');
     }
 }

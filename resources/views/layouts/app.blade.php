@@ -35,8 +35,13 @@
                         <div class="ml-4 flex items-center md:ml-6">
                             <div class="hidden md:block flex">
                                 <div class="ml-10 flex items-baseline space-x-4">
-                                    <a href="{{ route('registration') }}" class="@if (request()->routeIs('registration'))bg-gray-900 text-white @else text-gray-300 hover:bg-gray-700 hover:text-white @endif px-3 py-2 rounded-md text-sm font-medium">{{ __('pages.registration') }}</a>
-                                    <a href="{{ route('login') }}" class="@if (request()->routeIs('login'))bg-gray-900 text-white @else text-gray-300 hover:bg-gray-700 hover:text-white @endif px-3 py-2 rounded-md text-sm font-medium">{{ __('pages.login') }}</a>
+                                    @guest
+                                        <a href="{{ route('registration') }}" class="@if (request()->routeIs('registration'))bg-gray-900 text-white @else text-gray-300 hover:bg-gray-700 hover:text-white @endif px-3 py-2 rounded-md text-sm font-medium">{{ __('pages.registration') }}</a>
+                                        <a href="{{ route('login') }}" class="@if (request()->routeIs('login'))bg-gray-900 text-white @else text-gray-300 hover:bg-gray-700 hover:text-white @endif px-3 py-2 rounded-md text-sm font-medium">{{ __('pages.login') }}</a>
+                                    @endguest
+                                    @auth
+                                        @livewire('auth.logout')
+                                    @endauth
                                 </div>
                             </div>
                         </div>

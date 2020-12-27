@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Livewire\Pages;
+namespace App\Http\Livewire\Auth;
 
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
@@ -41,6 +41,6 @@ class Registration extends Component
 
     public function render()
     {
-        return view('livewire.pages.registration');
+        return view('livewire.auth.registration');
     }
 }
