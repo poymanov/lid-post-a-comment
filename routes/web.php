@@ -3,6 +3,8 @@
 use App\Http\Livewire\Pages\Home;
 use App\Http\Livewire\Auth\Login;
 use App\Http\Livewire\Auth\Registration;
+use App\Http\Livewire\Topic\Create;
+use App\Http\Livewire\Topic\TopicList;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -19,3 +21,5 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', Home::class)->name('home');
 Route::get('/login', Login::class)->name('login');
 Route::get('/registration', Registration::class)->name('registration');
+Route::get('/topics', TopicList::class)->name('topic.list');
+Route::get('/topics/create', Create::class)->name('topic.create')->middleware('auth');

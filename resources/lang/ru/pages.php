@@ -3,5 +3,6 @@
 return [
     'home' => 'Главная',
     'registration' => 'Регистрация',
-    'login' => 'Войти'
+    'login' => 'Войти',
+    'topic.list' => 'Темы',
 ];

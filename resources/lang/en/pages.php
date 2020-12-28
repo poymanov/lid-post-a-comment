@@ -3,5 +3,6 @@
 return [
     'home' => 'Home',
     'registration' => 'Registration',
-    'login' => 'Login'
+    'login' => 'Login',
+    'topic.list' => 'Topics',
 ];

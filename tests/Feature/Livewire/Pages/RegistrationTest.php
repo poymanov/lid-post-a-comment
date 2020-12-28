@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Tests\Feature\Livewire\Pages;
 
-use App\Http\Livewire\Pages\Registration;
+use App\Http\Livewire\Auth\Registration;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
