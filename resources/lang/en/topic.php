@@ -7,4 +7,5 @@ return [
     'created.failed'     => 'Topic creation error',
     'updated.successful' => 'Topic edited',
     'updated.failed'     => 'Topic editing failed',
+    'edit'               => 'Edit',
 ];

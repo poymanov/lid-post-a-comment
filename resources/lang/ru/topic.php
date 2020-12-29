@@ -7,4 +7,5 @@ return [
     'created.failed'     => 'Ошибка создания темы',
     'updated.successful' => 'Тема отредактирована',
     'updated.failed'     => 'Ошибка редактирования темы',
+    'edit'               => 'Редактировать',
 ];
