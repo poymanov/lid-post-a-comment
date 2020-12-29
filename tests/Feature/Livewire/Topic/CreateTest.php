@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Tests\Feature\Livewire\Topic;
 
 use App\Http\Livewire\Topic\Create;
-use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Livewire\Livewire;
@@ -74,7 +73,7 @@ class CreateTest extends TestCase
     public function test_validation_long_title()
     {
         Livewire::test(Create::class)
-            ->set('title', $this->faker->words(200))
+            ->set('title', $this->faker->sentence(200))
             ->call('submit')
             ->assertHasErrors([
                 'title',
@@ -93,5 +92,9 @@ class CreateTest extends TestCase
             ->call('submit')
             ->assertHasNoErrors()
             ->assertRedirect('/topics');
+
+        $this->assertDatabaseHas('topics', [
+            'title' => 'test'
+        ]);
     }
 }
