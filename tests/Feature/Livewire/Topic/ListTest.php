@@ -92,6 +92,43 @@ class ListTest extends TestCase
     }
 
     /**
+     * Для гостей не выводится кнопка удаления темы
+     */
+    public function test_guest_page_not_contains_delete_button()
+    {
+        Topic::factory()->create();
+
+        $response = $this->get(self::BASE_URL);
+        $response->assertDontSee('Удалить');
+    }
+
+    /**
+     * Пользователи не видят кнопки удаления тем других пользователей
+     */
+    public function test_page_not_contains_delete_button_for_other_users()
+    {
+        $this->signIn();
+        Topic::factory()->create();
+
+        $response = $this->get(self::BASE_URL);
+        $response->assertDontSee('Удалить');
+    }
+
+    /**
+     * Пользователи видят кнопки редактирования собственных тем
+     */
+    public function test_page_not_contains_delete_button_for_owner()
+    {
+        $user = User::factory()->create();
+
+        $this->signIn($user);
+        Topic::factory()->create(['user_id' => $user->id]);
+
+        $response = $this->get(self::BASE_URL);
+        $response->assertSee('Удалить');
+    }
+
+    /**
      * Отображение тем с учетом пагинации
      */
     public function test_with_pagination()

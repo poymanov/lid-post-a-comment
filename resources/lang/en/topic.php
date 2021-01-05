@@ -8,4 +8,7 @@ return [
     'updated.successful' => 'Topic edited',
     'updated.failed'     => 'Topic editing failed',
     'edit'               => 'Edit',
+    'delete'             => 'Delete',
+    'deleted.successful' => 'Topic removed',
+    'deleted.failed'     => 'Topic deleting failed',
 ];

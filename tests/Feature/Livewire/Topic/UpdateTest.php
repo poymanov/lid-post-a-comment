@@ -116,8 +116,6 @@ class UpdateTest extends TestCase
      */
     public function test_success()
     {
-        $this->signIn();
-
         $user = User::factory()->create();
         $topic = Topic::factory()->create(['user_id' => $user->id]);
 

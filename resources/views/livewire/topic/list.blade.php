@@ -44,7 +44,10 @@
                                 </button>
                             </span>
                         </a>
-                    @endauth
+                    @endcan
+                    @can('delete', $topic)
+                        @livewire('topic.delete', compact('topic'))
+                    @endcan
                 </div>
             </div>
             <hr/>
