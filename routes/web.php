@@ -6,6 +6,7 @@ use App\Http\Livewire\Auth\Registration;
 use App\Http\Livewire\Topic\Create;
 use App\Http\Livewire\Topic\TopicList;
 use App\Http\Livewire\Topic\Update;
+use App\Http\Livewire\Topic\View;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -25,3 +26,4 @@ Route::get('/registration', Registration::class)->name('registration');
 Route::get('/topics', TopicList::class)->name('topic.list');
 Route::get('/topics/create', Create::class)->name('topic.create')->middleware('auth');
 Route::get('/topics/{topic}/edit', Update::class)->name('topic.edit')->middleware('auth');
+Route::get('/topics/{topic}', View::class)->name('topic.view');

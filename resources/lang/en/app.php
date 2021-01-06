@@ -1,5 +1,6 @@
 <?php
 
 return [
-    'create' => 'Create'
+    'create' => 'Create',
+    'add' => 'Add',
 ];

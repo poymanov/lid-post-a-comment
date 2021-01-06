@@ -7,15 +7,9 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Topic extends Model
+class Comment extends Model
 {
     use HasFactory;
 
-    /**
-     * Get the comments for the blog post.
-     */
-    public function comments()
-    {
-        return $this->hasMany(Comment::class);
-    }
+    protected $fillable = ['user_id', 'topic_id', 'content'];
 }
