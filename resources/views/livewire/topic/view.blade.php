@@ -3,8 +3,11 @@
         {{ $topic->title }}
     </h1>
     @auth
-        <div class="mt-5 md:mt-0 md:col-span-2">
+        <div class="mt-5 md:mt-0 md:col-span-2 mb-5">
             @livewire('comment.create', compact('topic'))
         </div>
     @endauth
+    <div class="md:mt-0 md:col-span-2">
+        @livewire('comment.comment-list', compact('topic'))
+    </div>
 </div>
