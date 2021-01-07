@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Tests\Feature\Livewire\Topic;
 
 use App\Http\Livewire\Topic\TopicList;
+use App\Models\Comment;
 use App\Models\Topic;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -133,19 +134,28 @@ class ListTest extends TestCase
      */
     public function test_with_pagination()
     {
-        $topicOne = Topic::factory()->create();
-        $topicSecond = Topic::factory()->create();
-        $topicThird = Topic::factory()->create();
-        $topicFourth = Topic::factory()->create();
-        $topicFifth = Topic::factory()->create();
-        $topicSixth = Topic::factory()->create();
+        $topics = Topic::factory(6)->create();
 
         $response = $this->get(self::BASE_URL);
-        $response->assertSee($topicOne->title);
-        $response->assertSee($topicSecond->title);
-        $response->assertSee($topicThird->title);
-        $response->assertSee($topicFourth->title);
-        $response->assertSee($topicFifth->title);
-        $response->assertDontSee($topicSixth->title);
+        $response->assertSee($topics[0]->title);
+        $response->assertSee($topics[1]->title);
+        $response->assertSee($topics[2]->title);
+        $response->assertSee($topics[3]->title);
+        $response->assertSee($topics[4]->title);
+        $response->assertDontSee($topics[5]->title);
+    }
+
+    /**
+     * У темы отображается количество комментариев
+     */
+    public function test_contains_comments_count()
+    {
+        $commentsCount = 15;
+
+        $topic = Topic::factory()->has(Comment::factory($commentsCount))->create([
+            'title' => 'test'
+        ]);
+
+        $this->get(self::BASE_URL)->assertSee($commentsCount);
     }
 }

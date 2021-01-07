@@ -134,9 +134,13 @@ class ViewTest extends TestCase
     {
         $topic = Topic::factory()->create();
 
-        $comments = Comment::factory(6)->create(['topic_id' => $topic->id]);
+        $commentsCount = 6;
+
+        $comments = Comment::factory($commentsCount)->create(['topic_id' => $topic->id]);
 
         $response = $this->get(self::BASE_URL . $topic->id);
+
+        $response->assertSee("Комментарии ($commentsCount)");
 
         $response->assertSee($comments[0]->content);
         $response->assertSee($comments[1]->content);

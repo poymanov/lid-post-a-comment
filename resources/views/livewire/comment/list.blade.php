@@ -1,6 +1,6 @@
 <div>
     <h2 class="text-xl font-bold leading-tight text-gray-900 mb-2">
-        {{ __('comment.list.header') }}
+        {{ __('comment.list.header') }} ({{ $comments->total() }})
     </h2>
     @foreach($comments as $comment)
         <!-- component -->
