@@ -9,6 +9,7 @@ use App\Http\Livewire\Comment\Create;
 use App\Http\Livewire\Topic\View;
 use App\Models\Comment;
 use App\Models\Topic;
+use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
@@ -148,5 +149,44 @@ class ViewTest extends TestCase
         $response->assertSee($comments[3]->content);
         $response->assertSee($comments[4]->content);
         $response->assertDontSee($comments[5]->content);
+    }
+
+    /**
+     * Для гостей не выводится кнопка удаления комментария
+     */
+    public function test_guest_comment_not_contains_delete_button()
+    {
+        $topic = Topic::factory()->has(Comment::factory())->create();
+
+        $response = $this->get(self::BASE_URL . $topic->id);
+        $response->assertDontSee('Удалить');
+    }
+
+    /**
+     * Пользователи не видят кнопки удаления комментариев других пользователей
+     */
+    public function test_page_not_contains_comment_delete_button_for_other_users()
+    {
+        $this->signIn();
+        $topic = Topic::factory()->has(Comment::factory())->create();
+
+        $response = $this->get(self::BASE_URL . $topic->id);
+        $response->assertDontSee('Удалить');
+    }
+
+    /**
+     * Пользователи видят кнопки удаления собственных комментариев
+     */
+    public function test_page_contains_comment_delete_button_for_owner()
+    {
+        $user = User::factory()->create();
+
+        $this->signIn($user);
+        $topic = Topic::factory()->create();
+
+        Comment::factory()->create(['user_id' => $user->id, 'topic_id' => $topic->id]);
+
+        $response = $this->get(self::BASE_URL . $topic->id);
+        $response->assertSee('Удалить');
     }
 }

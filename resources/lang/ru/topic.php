@@ -8,7 +8,6 @@ return [
     'updated.successful'          => 'Тема отредактирована',
     'updated.failed'              => 'Ошибка редактирования темы',
     'edit'                        => 'Редактировать',
-    'delete'                      => 'Удалить',
     'deleted.successful'          => 'Тема удалена',
     'deleted.failed'              => 'Ошибка удаления темы',
     'deleted.comments.failed'     => 'Ошибка удаления комментариев темы',
