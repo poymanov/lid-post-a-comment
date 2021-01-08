@@ -17,9 +17,9 @@ class LoginTest extends TestCase
     private const BASE_URL = '/login';
 
     /**
-     * @test
+     * Страница отображает правильный компонент
      */
-    function page_contains_livewire_component()
+    function test_page_contains_livewire_component()
     {
         $this->get(self::BASE_URL)->assertSeeLivewire(Login::getName());
     }
