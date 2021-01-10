@@ -32,7 +32,10 @@ backend-permissions:
 backend-composer-install:
 	docker-compose run --rm php-cli composer install
 
-backend-init: backend-permissions backend-composer-install wait-db backend-migrations
+backend-init: backend-permissions backend-copy-env backend-composer-install wait-db backend-migrations
+
+backend-copy-env:
+	cp .env.example .env
 
 backend-test:
 	docker-compose run --rm php-cli php artisan test
