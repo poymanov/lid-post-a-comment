@@ -14,6 +14,9 @@
                     </div>
                     <div>
                         <div class="mb-1 leading-6">{{ $comment->content }}</div>
+                        @if($comment->image)
+                            <img src="{{$comment->imagePath}}" width="200" alt="" class="mb-2" />
+                        @endif
                     </div>
                 </div>
             </div>

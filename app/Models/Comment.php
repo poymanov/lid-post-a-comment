@@ -6,12 +6,13 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Storage;
 
 class Comment extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['user_id', 'topic_id', 'content'];
+    protected $fillable = ['user_id', 'topic_id', 'content', 'image'];
 
     public function user()
     {
@@ -21,5 +22,10 @@ class Comment extends Model
     public function topic()
     {
         return $this->belongsTo(Topic::class);
+    }
+
+    public function getImagePathAttribute()
+    {
+        return Storage::disk('public')->url($this->image);
     }
 }
