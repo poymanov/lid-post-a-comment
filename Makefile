@@ -32,7 +32,7 @@ backend-permissions:
 backend-composer-install:
 	docker-compose run --rm php-cli composer install
 
-backend-init: backend-permissions backend-copy-env backend-composer-install wait-db backend-migrations backend-create-storage
+backend-init: backend-permissions backend-composer-install backend-copy-env backend-generate-key wait-db backend-migrations backend-create-storage
 
 backend-copy-env:
 	cp .env.example .env
@@ -51,6 +51,9 @@ backend-migrations:
 
 backend-seed:
 	docker-compose run --rm php-cli php artisan migrate:fresh --seed
+
+backend-generate-key:
+	docker-compose run --rm php-cli php artisan key:generate
 
 frontend-clear:
 	docker run --rm -v ${PWD}:/app -w /app alpine sh -c 'rm -rf .ready'
